@@ -1,31 +1,86 @@
 package ua.goit.HomeWork8;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class MyQueue {
-    public static void main(String[] args) {
-        Queue<String> cars = new LinkedList<>();
 
-        cars.add("Honda");
-        cars.add("Toyota");
-        cars.add("Mazda");
-        cars.offer("BMW");
-        cars.offer("Mercedes");
+    private int[] array;
+    private int size;
+    private int count;
+    private int head;
+    private int tail;
 
-        System.out.println("My Queue: " + cars);
+    public MyQueue(int maxSize) {
+        this.size = maxSize;
+        array = new int[size];
+        head = 0;
+        count = 0;
+        tail = -1;
+    }
 
-        System.out.println("My Queue size: " + cars.size());
+    public void add(int value) {
+        if (isFull()) {
+            System.out.println("My Queue is full");
+            return;
+        }
+        if (tail == size - 1) {
+            tail = -1;
+        }
+        array[++tail] = value;
+        count++;
+    }
 
-        System.out.println("First element: " + cars.peek());
+    public int remove() {
+        if (isEmpty()) {
+            System.out.println("My Queue is empty");
+            return 0;
+        }
+        count--;
+        head = head % size;
+        return array[head++];
+    }
 
-        cars.remove("Mazda");
-        System.out.println("After remove Mazda: " + cars);
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("My Queue is empty");
+            return 0;
+        }
+        return array[head];
+    }
 
-        String poll = cars.poll();
-        System.out.println("Remove: " + poll + ". After remove: " + cars);
+    public int size() {
+        return count;
+    }
 
-        cars.clear();
-        System.out.println(cars);
+    public void print() {
+        System.out.print("[");
+        int item = head;
+        for (int i = 0; i < count; i++) {
+            System.out.print(array[item++ % size]);
+            if (i != count - 1) {
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
+    }
+
+    public boolean isFull() {
+        return (count == size);
+    }
+
+    public boolean isEmpty() {
+        return (count == 0);
+    }
+
+    public int poll() {
+        count--;
+        head = head % size;
+        return array[head++];
+    }
+
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            count--;
+            head = head % size;
+        }
+        size = 0;
     }
 }

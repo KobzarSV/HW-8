@@ -1,34 +1,46 @@
 package ua.goit.HomeWork8;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Objects;
 
 public class MyArrayList {
-    public static void main(String[] args) {
-        Integer[] integers = new Integer[]{11, 12, 13, 14, 15, 16};
 
-        List<Integer> numbers = new ArrayList<>(Arrays.asList(integers));
+    private static final int DEFAULT_CAPACITY = 10;
+    private final Object[] array = new Object[DEFAULT_CAPACITY];
+    private int size = 0;
 
-        System.out.println("My ArrayList: ");
-        for (Integer nums : numbers) {
-            System.out.println(nums);
+    public void add(Object value) {
+        if (size == array.length - 1) {
+            int resize = array.length * 2;
         }
+        array[size++] = value;
+    }
 
-        numbers.add(17);
-        numbers.add(3, 20);
-        numbers.remove(2);
+    public Object get(int index) {
+        Objects.checkIndex(index, size);
+        return (Object) array[index];
+    }
 
-        System.out.println("After add and remove items: ");
-        for (Integer nums : numbers) {
-            System.out.println(nums);
+    public void remove(int index) {
+        for (int i = index; i < size; i++)
+            array[i] = array[i + 1];
+        array[size] = null;
+        size--;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            array[i] = null;
         }
+        size = 0;
+    }
 
-        System.out.println("The value at index 2: " + numbers.get(2));
-
-        System.out.println("My ArrayList size: " + numbers.size());
-
-        numbers.clear();
-        System.out.println("My ArrayList size: " + numbers.size());
+    public static void printList(MyArrayList list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 }

@@ -1,30 +1,69 @@
 package ua.goit.HomeWork8;
 
-import java.util.Stack;
+public class MyStack<T> {
 
-public class MyStack {
-    public static void main(String[] args) {
-        Stack<String> numbers = new Stack<>();
+    private int size;
+    private int[] array;
+    private int top;
 
-        numbers.push("one");
-        numbers.push("two");
-        numbers.push("three");
-        numbers.push("four");
-        numbers.push("five");
-        numbers.push("six");
+    public MyStack(int size) {
+        this.size = size;
+        this.array = new int[size];
+        this.top = -1;
+    }
 
-        System.out.println("Stack: " + numbers);
+    public boolean isEmpty() {
+        return (top == -1);
+    }
 
-        System.out.println("Stack size: " + numbers.size());
+    public void push(int element) {
+        int i = ++top;
+        array[i] = element;
+    }
 
-        System.out.println("Last element Stack: " + numbers.peek());
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("My Stack is empty");
+            return 0;
+        } else {
+            size--;
+            return array[top--];
+        }
+    }
 
-        System.out.println("Last element Stack and remove him: " + numbers.pop());
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("My Stack is empty");
+            return 0;
+        } else {
+            return array[top];
+        }
+    }
 
-        numbers.remove(2);
-        System.out.println("Stack after remove: " + numbers);
+    public int remove() {
+        return array[top--];
+    }
 
-        numbers.clear();
-        System.out.println(numbers);
+    public int size() {
+        return size;
+    }
+
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            array[i] = 0;
+        }
+        size = 0;
+    }
+
+    public void print() {
+        System.out.print("[");
+        int item = top;
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[item++ % size]);
+            if (i != size - 1) {
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
     }
 }
