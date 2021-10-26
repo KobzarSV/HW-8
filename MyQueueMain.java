@@ -1,7 +1,7 @@
 package ua.goit.HomeWork8;
 
 public class MyQueueMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         MyQueue number = new MyQueue(10);
 
         number.add(1);

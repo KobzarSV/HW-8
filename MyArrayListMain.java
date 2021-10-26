@@ -9,6 +9,12 @@ public class MyArrayListMain {
         numbers.add(13);
         numbers.add(14);
         numbers.add(15);
+        numbers.add(16);
+        numbers.add(17);
+        numbers.add(18);
+        numbers.add(19);
+        numbers.add(20);
+        numbers.add(21);
 
         System.out.println("My ArrayList: ");
         MyArrayList.printList(numbers);

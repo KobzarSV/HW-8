@@ -15,11 +15,10 @@ public class MyLinkedListMain {
         MyLinkedList.printList(names);
 
         names.remove(4);
-
         System.out.println("After remove name: ");
         MyLinkedList.printList(names);
 
-        System.out.println("The name at index 1: " + names.get(1));
+        System.out.println("The name at index 4: " + names.get(4));
 
         System.out.println("My LinkedList size: " + names.size());
 

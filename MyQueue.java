@@ -16,10 +16,9 @@ public class MyQueue {
         tail = -1;
     }
 
-    public void add(int value) {
+    public void add(int value) throws Exception {
         if (isFull()) {
-            System.out.println("My Queue is full");
-            return;
+            throw new Exception("My Queue is full");
         }
         if (tail == size - 1) {
             tail = -1;

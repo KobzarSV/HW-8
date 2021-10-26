@@ -1,14 +1,13 @@
 package ua.goit.HomeWork8;
 
-
-public class MyLinkedList<E>  {
+public class MyLinkedList<E> {
 
     private Node<E> firstNode;
     private Node<E> lastNode;
     private int size = 0;
 
     public MyLinkedList() {
-        lastNode = new Node<E>(null, firstNode, null );
+        lastNode = new Node<E>(null, firstNode, null);
         firstNode = new Node<E>(null, null, lastNode);
     }
 
@@ -25,12 +24,17 @@ public class MyLinkedList<E>  {
     }
 
     public E get(int index) {
+        if (index < 0 || index > size - 1) {
+            throw new IllegalArgumentException();
+        }
         Node<E> target = firstNode.getNextElement();
         for (int i = 0; i < index; i++) {
             target = getNextElement(target);
         }
+
         return target.getElement();
     }
+
     private Node<E> getNextElement(Node<E> current) {
         return current.getNextElement();
     }
@@ -45,7 +49,7 @@ public class MyLinkedList<E>  {
         }
         firstNode = lastNode = null;
         size = 0;
-     }
+    }
 
     public boolean remove(int index) {
         if (index < 0 || index > size - 1) {
@@ -66,7 +70,7 @@ public class MyLinkedList<E>  {
         if (index < 0 || index > size - 1) {
             throw new IndexOutOfBoundsException();
         }
-        int tmpIndex = 0;
+        int tmpIndex = -1;
         if (firstNode == null) {
             throw new IndexOutOfBoundsException();
         }
@@ -91,7 +95,7 @@ public class MyLinkedList<E>  {
         int count = 0;
         Node<E> node = firstNode;
         while (node.nextElement != null) {
-            if (count == index - 1) {
+            if (index == count) {
                 return node;
             }
             count++;

@@ -8,7 +8,7 @@ public class MyHashMap<K, V> {
     private static final int DEFAULT_LENGTH = 16;
     private final int arrayLength;
     private int size;
-    private Node<K, V>[] tables;
+    private Node[] tables;
 
     public MyHashMap(int length) {
         if (length <= 0) {
@@ -127,9 +127,9 @@ public class MyHashMap<K, V> {
     @Override
     public String toString() {
         return "MyHashMap{" +
-                "arrayLength=" + arrayLength +
-                ", size=" + size +
-                ", tables=" + Arrays.toString(tables) +
+                "arrayLength = " + arrayLength +
+                ", size = " + size +
+                ", tables = " + Arrays.toString(tables) +
                 '}';
     }
 

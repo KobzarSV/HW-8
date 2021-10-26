@@ -1,16 +1,18 @@
 package ua.goit.HomeWork8;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class MyArrayList {
 
     private static final int DEFAULT_CAPACITY = 10;
-    private final Object[] array = new Object[DEFAULT_CAPACITY];
+    private Object[] array = new Object[DEFAULT_CAPACITY];
     private int size = 0;
 
     public void add(Object value) {
         if (size == array.length - 1) {
             int resize = array.length * 2;
+            array = Arrays.copyOf(array, resize);
         }
         array[size++] = value;
     }
